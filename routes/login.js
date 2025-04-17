@@ -12,6 +12,7 @@ router.get('/', function(req, res, next) {
     res.render('login', { title: 'Login' });
 });
 
+
 router.post('/login', function(req, res, next) {
     const { username, password } = req.body;
 
