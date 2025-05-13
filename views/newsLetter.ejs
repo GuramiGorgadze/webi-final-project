@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>The Blog | News Letter</title>
+    <link rel="stylesheet" href="/stylesheets/header.css">
+    <link rel="stylesheet" href="/stylesheets/footer.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/newsLetter.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Sen:wght@400..800&display=swap"
+          rel="stylesheet">
+    <link rel="shortcut icon" href="./images/blog-icon.svg" type="image/x-icon">
+</head>
+<body>
+    <%- include('partials/header', {email: email}); %>
+
+    <section class="container newsletter">
+        <p class="newsletter-subtitle">Newsletters</p>
+
+        <h2 class="newsletter-title">Stories and interviews</h2>
+
+        <h6 class="newsletter-text">Subscribe to learn about new product features, the latest in technology, solutions, and updates.</h6>
+
+        <div class="sub">
+            <div class="input-wrapper">
+                <input class="sub-input" type="text" placeholder="Enter your email">
+
+                <a class="sub-btn" href="">Subscribe</a>
+            </div>
+
+            <p class="sub-text">We care about your data in our  <span class="underline"><a href="">privacy policy</a></span></p>
+        </div>
+    </section>
+
+    <div class="container blog-wrapper">
+        <div class="recent-blogs">
+            <h2 class="recent-blogs-title">All blog posts</h2>
+
+            <div class="recent-blogs-content">
+                <% blogs.splice(0, 6).forEach((blog, index)=>{ %>
+                    <div class="recent-blog">
+                        <a href="/blogs/<%= blog.id %>">
+                            <figure>
+                                <img class="recent-blog-image" src="/images/thumbnails/normal/<%= index %>.png" alt="thumbnail">
+                            </figure>
+                        </a>
+
+                        <div>
+                            <p class="recent-blog-date"><%= blog.formatedDate %></p>
+                        </div>
+                        <a class="recent-blog-title-wrapper" href="/blogs/<%= blog.id %>">
+                            <h3 class="recent-blog-title"><%= blog.title.slice(0, 20) %> </h3>
+
+                            <img src="/images/arrow-up-right-light.svg" alt="arrow-up-right-light">
+                        </a>
+                        <p class="recent-blog-description"><%= blog.description.slice(0, 90) %> </p>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+
+    <%- include('partials/footer'); %>
+</body>
+</html>
