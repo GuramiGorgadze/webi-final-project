@@ -17,44 +17,80 @@
     <link rel="shortcut icon" href="./images/blog-icon.svg" type="image/x-icon">
 </head>
 <body>
-    <%- include('partials/header', {email: email}); %>
+<%- include('partials/header', {email: email}); %>
 
-    <div class="container blog-wrapper">
-        <div class="recent-blogs">
-            <h2 class="recent-blogs-title">Recent blog posts</h2>
+<div class="container blog-wrapper">
+    <div class="recent-blogs">
+        <h2 class="recent-blogs-title">Recent blog posts</h2>
 
-            <div class="recent-blogs-content">
-                <% blogs.splice(0, 6).forEach((blog, index)=>{ %>
+        <div class="recent-blogs-content">
+            <% blogs.splice(0, 6).forEach((blog, index)=>{ %>
+                <div>
+                    <a href="/blogs/<%= blog.id %>">
+                        <figure>
+                            <img class="recent-blog-image" src="/images/thumbnails/normal/<%= index %>.png"
+                                 alt="thumbnail">
+                        </figure>
+                    </a>
+
                     <div>
-                        <a href="/blogs/<%= blog.id %>">
-                            <figure>
-                                <img class="recent-blog-image" src="/images/thumbnails/normal/<%= index %>.png" alt="thumbnail">
-                            </figure>
-                        </a>
-
-                        <div>
-                            <p class="recent-blog-date"><%= blog.formatedDate %></p>
-                        </div>
-                        <a class="recent-blog-title-wrapper" href="/blogs/<%= blog.id %>">
-                            <h3 class="recent-blog-title"><%= blog.title.slice(0, 20) %> </h3>
-
-                            <img src="/images/arrow-up-right-light.svg" alt="arrow-up-right-light">
-                        </a>
-                        <p class="recent-blog-description"><%= blog.description.slice(0, 90) %> </p>
+                        <p class="recent-blog-date"><%= blog.formatedDate %></p>
                     </div>
-                <% }) %>
-            </div>
-        </div>
+                    <a class="recent-blog-title-wrapper" href="/blogs/<%= blog.id %>">
+                        <h3 class="recent-blog-title"><%= blog.title.slice(0, 20) %> </h3>
 
-        <div class="blog-content">
-            <p class="blog-date"><%= blog.formatedDate %></p>
-
-            <h2 class="blog-title"><%= blog.title %></h2>
-
-            <p class="blog-text"><%= blog.content %></p>
+                        <img src="/images/arrow-up-right-light.svg" alt="arrow-up-right-light">
+                    </a>
+                    <p class="recent-blog-description"><%= blog.description.slice(0, 90) %> </p>
+                </div>
+            <% }) %>
         </div>
     </div>
 
-    <%- include('partials/footer'); %>
+    <div class="blog-content">
+        <p class="blog-date"><%= blog.formatedDate %></p>
+
+        <h2 class="blog-title"><%= blog.title %></h2>
+
+        <p class="blog-text"><%= blog.content %></p>
+
+        <section class="blog-comments ">
+            <div class="divider"></div>
+
+            <h2 class="blogs-comments-title">Comments</h2>
+
+            <form action="/blogs/<%= blog.id %>/newComment" method="POST">
+                <textarea class="blog-comment-input" name="newComment" placeholder="Comment..."></textarea>
+                <button class="blog-comment-button">Post Comment</button>
+            </form>
+
+            <% blog.comments.reverse().forEach((comment) => { %>
+                <div class="comment-wrapper">
+                    <div class="comment-header">
+                        <figure class="author-wrapper">
+                            <img class="comment-author-img"
+                                 src="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png"
+                                 alt="user-icon">
+
+                            <div>
+                                <p class="author-username"><%= comment.author.split("@")[0] %></p>
+                                <p class="comment-date"><%= comment.date.toLocaleDateString("en-US", {
+                                        month: "short",
+                                        day: "numeric",
+                                        year: "numeric"
+                                    }) %></p>
+                            </div>
+                        </figure>
+                    </div>
+
+                    <p> <%= comment.content %></p>
+                </div>
+            <% }) %>
+        </section>
+    </div>
+</div>
+
+
+<%- include('partials/footer'); %>
 </body>
 </html>
