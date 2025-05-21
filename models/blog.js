@@ -10,6 +10,7 @@ const commentsSchema = new mongoose.Schema(
             content: {type: String, required: true},
             author: {type: String, required: true},
             date: {type: Date, default: Date.now},
+            likes: [String]
         }],
         likes: [String]
     }

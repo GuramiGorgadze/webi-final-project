@@ -110,4 +110,80 @@ router.post('/:blogId/newComment', requireAuth, async function (req, res, next) 
     res.redirect(`/blogs/${blogId}`);
 });
 
+router.post('/:blogId/:commentId/newReply', requireAuth, async (req, res) => {
+    const { blogId, commentId } = req.params;
+    const { newReply } = req.body;
+
+    const reply = {
+        content: newReply,
+        author: req.session.user.email,
+        date: new Date()
+    };
+
+    try {
+        await Blog.updateOne(
+            { id: blogId, "comments.id": commentId },
+            { $push: { "comments.$.replies": reply } }
+        );
+
+        res.redirect(`/blogs/${blogId}`);
+    } catch (err) {
+        console.error(err);
+    }
+});
+
+router.post('/:blogId/:commentId/like', requireAuth, async (req, res) => {
+    const { blogId, commentId } = req.params;
+    const email = req.session.user.email;
+
+    try {
+        const blog = await Blog.findOne({ id: blogId });
+        const comment = blog.comments.find(c => c.id === commentId);
+
+        const alreadyLiked = comment.likes.includes(email);
+
+        const update = alreadyLiked
+            ? { $pull: { 'comments.$.likes': email } }
+            : { $push: { 'comments.$.likes': email } }; 
+
+        await Blog.updateOne(
+            { id: blogId, 'comments.id': commentId },
+            update
+        );
+        
+        res.redirect(`/blogs/${blogId}`);
+    } catch (err) {
+        console.error(err);
+        res.redirect(`/blogs/${blogId}`);
+    }
+});
+
+router.post('/:blogId/:commentId/:replyId/like', requireAuth, async (req, res) => {
+    const { blogId, commentId, replyId } = req.params;
+    const email = req.session.user.email;
+
+    try {
+        const blog = await Blog.findOne({ id: blogId });
+        const comment = blog.comments.find(c => c.id === commentId);
+        const reply = comment.replies.find(r => r.id === replyId);
+
+
+        const alreadyLiked = comment.likes.includes(email);
+
+        const update = alreadyLiked
+            ? { $pull: { 'replies.$.likes': email } }
+            : { $push: { 'replies.$.likes': email } };
+
+        await Blog.updateOne(
+            { id: blogId, 'replies.id': replyId },
+            update
+        );
+
+        res.redirect(`/blogs/${blogId}`);
+    } catch (err) {
+        console.error(err);
+        res.redirect(`/blogs/${blogId}`);
+    }
+});
+
 module.exports = router;

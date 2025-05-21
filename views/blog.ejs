@@ -81,9 +81,61 @@
                                     }) %></p>
                             </div>
                         </figure>
+
+                        <form class="like-wrapper" action="/blogs/<%= blog.id %>/<%= comment.id %>/like" method="POST">
+                            <button class="like-btn" type="submit">
+                                <img src="/images/like-btn.svg" alt="like-btn">
+                            </button>
+                            <p class="like-count"><%= comment.likes.length%></p>
+                        </form>
                     </div>
 
-                    <p> <%= comment.content %></p>
+                    <p class="comment-content"> <%= comment.content %></p>
+
+
+                    <button class="reply-btn">Reply</button>
+
+                    <div class="reply-container">
+                        <form class="reply-form" action="/blogs/<%= blog.id %>/<%= comment.id %>/newReply"
+                              method="POST">
+                            <textarea class="blog-comment-input" name="newReply" placeholder="Reply..."></textarea>
+                            <button class="blog-comment-button reply-submit-btn" type="submit">Reply</button>
+                        </form>
+                    </div>
+
+                    <% comment.replies.forEach((reply) => { %>
+                        <div class="reply-wrapper">
+                            <div class="comment-header">
+                                <figure class="author-wrapper">
+                                    <img class="comment-author-img"
+                                         src="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png"
+                                         alt="user-icon">
+
+                                    <div>
+                                        <p class="author-username"><%= reply.author.split("@")[0] %></p>
+                                        <p class="comment-date"><%= reply.date.toLocaleDateString("en-US", {
+                                                month: "short",
+                                                day: "numeric",
+                                                year: "numeric"
+                                            }) %></p>
+                                    </div>
+                                </figure>
+
+
+                                <form class="like-wrapper" action="/blogs/<%= blog.id %>/<%= comment.id %>/<%= reply.id %>/like" method="POST">
+                                    <button class="like-btn" type="submit">
+                                        <img src="/images/like-btn.svg" alt="like-btn">
+                                    </button>
+                                    <p class="like-count"><%= reply.likes.length%></p>
+                                </form>
+                            </div>
+
+                            <p class="comment-content"> <%= reply.content %></p>
+
+                        </div>
+
+                    <% }) %>
+
                 </div>
             <% }) %>
         </section>
@@ -93,4 +145,16 @@
 
 <%- include('partials/footer'); %>
 </body>
+
+<script>
+    const replyButtons = document.querySelectorAll(".reply-btn");
+
+    replyButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            const replyForm = button.nextElementSibling.querySelector(".reply-form");
+            replyForm.style.display = replyForm.style.display === "block" ? "none" : "block";
+        });
+    });
+</script>
+
 </html>
