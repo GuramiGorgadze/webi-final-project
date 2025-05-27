@@ -28,11 +28,19 @@
             <p class="newsletter-description">Subscribe to learn about new product features, the latest in technology, solutions, and updates.</p>
         </div>
 
-        <form class="newsletter-form" action="">
+        <form class="newsletter-form" action="/newsletter/add" method="post">
             <div class="input-wrapper">
-                <input class="newsletter-input" type="text" placeholder="Enter your email">
+                <input class="newsletter-input" type="text" name='email' placeholder="Enter your email" required>
                 <button class="newsletter-btn">Subscribe</button>
             </div>
+
+            <% if (success) { %>
+                <p class="newsletter-text success-message"><%= message %></p>
+            <% } else { %>
+                <p class="newsletter-text error-message"><%= message %></p>
+            <% } %>
+
+
             <p class="newsletter-text">We care about your data in our <a class="privacy" href="">privacy policy</a></p>
         </form>
     </div>

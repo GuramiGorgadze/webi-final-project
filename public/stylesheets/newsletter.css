@@ -133,6 +133,14 @@ body {
     margin-top: 8px;
 }
 
+.error-message {
+    color: #731111;
+}
+
+.success-message {
+    color: #9ade5e;
+}
+
 .privacy {
     font-family: Inter, monospace;
     font-weight: 400;
@@ -214,11 +222,4 @@ body {
 
 .all-blogs-img {
     width: 100%;
-}
-
-@media (max-width: 768px) {
-    /*.all-blogs-img {*/
-    /*    height: 140px;*/
-    /*    object-fit: cover;*/
-    /*}*/
 }
