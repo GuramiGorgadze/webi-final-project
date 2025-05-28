@@ -90,7 +90,7 @@ input::placeholder, textarea::placeholder {
     }
 }
 
-button {
+.add-btn {
     width: 955px;
     background-color: #1A1A1A;
     color: #FFF;
@@ -108,21 +108,20 @@ button {
     border-radius: 2px;
 }
 
-button:hover {
+.add-btn:hover {
     background-color: #FFF;
     color: #1A1A1A;
 }
 
 @media (max-width: 1440px) {
-    button {
+    .add-btn {
         width: 755px;
     }
 }
 
 @media (max-width: 1024px) {
-    button {
+    .add-btn {
         width: 100%;
     }
 }
-
 

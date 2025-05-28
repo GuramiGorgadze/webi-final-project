@@ -21,7 +21,7 @@
 
 <div class="container blog-wrapper">
     <div class="recent-blogs">
-        <h2 class="recent-blogs-title">Recent blog posts</h2>
+        <h2 class="recent-blogs-title main-title">Recent blog posts</h2>
 
         <div class="recent-blogs-content">
             <% blogs.splice(0, 6).forEach((blog, index)=>{ %>
@@ -37,11 +37,11 @@
                         <p class="recent-blog-date"><%= blog.formatedDate %></p>
                     </div>
                     <a class="recent-blog-title-wrapper" href="/blogs/<%= blog.id %>">
-                        <h3 class="recent-blog-title"><%= blog.title.slice(0, 20) %> </h3>
+                        <h3 class="recent-blog-title main-title"><%= blog.title.slice(0, 20) %> </h3>
 
                         <img src="/images/arrow-up-right-light.svg" alt="arrow-up-right-light">
                     </a>
-                    <p class="recent-blog-description"><%= blog.description.slice(0, 90) %> </p>
+                    <p class="recent-blog-description main-text"><%= blog.description.slice(0, 90) %> </p>
                 </div>
             <% }) %>
         </div>
@@ -50,15 +50,15 @@
     <div class="blog-content">
         <p class="blog-date"><%= blog.formatedDate %></p>
 
-        <h2 class="blog-title"><%= blog.title %></h2>
+        <h2 class="blog-title main-title"><%= blog.title %></h2>
 
-        <p class="blog-text"><%= blog.content %></p>
+        <p class="blog-text main-text"><%= blog.content %></p>
 
         <section class="blog-comments">
             <div class="separator"></div>
-            <h3 class="blog-comments-title">Comments</h3>
+            <h3 class="blog-comments-title main-title">Comments</h3>
             <form action="/blogs/<%= blog.id %>/newComment" method="post">
-                <textarea placeholder="Comment..." class="comment-input" name="newComment" id="comment-input" cols="30"
+                <textarea placeholder="Comment..." class="comment-input main-input" name="newComment" id="comment-input" cols="30"
                           rows="auto"></textarea>
                 <button class="post-btn">Post Comment</button>
             </form>
@@ -100,7 +100,7 @@
                     <form method="post" action="/blogs/<%= blog.id %>/comment/<%= comment.id %>/reply"
                           class="reply-input-wrapper">
                         <textarea placeholder="Reply..." name="replyContent" id="reply-input"
-                                  class="reply-input"></textarea>
+                                  class="reply-input main-input"></textarea>
                         <button class="post-btn">Post Reply</button>
                     </form>
                     <div class="replies-wrapper">
@@ -115,7 +115,7 @@
                                         <p id="reply-author-username"
                                            class="author-username"> <%= reply.author.split('@')[0] %></p>
                                         <p id="reply-date"
-                                           class="comment-date"> <%= reply.date.toLocaleDateString('en-US', {
+                                           class="comment-date light"> <%= reply.date.toLocaleDateString('en-US', {
                                                 month: 'short',
                                                 day: 'numeric',
                                                 year: 'numeric'

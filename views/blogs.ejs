@@ -22,12 +22,12 @@
 
 <a href="/">
     <div class="blog-container">
-        <h2 class="title container">THE BLOG</h2>
+        <h2 class="title container main-title">THE BLOG</h2>
     </div>
 </a>
 
 <section class="recent-blogs container">
-    <h3 class="recent-blogs-title">Recent blog posts</h3>
+    <h3 class="recent-blogs-title main-title">Recent blog posts</h3>
     <div class="recent-blogs-content">
         <div class="primary-card">
             <figure>
@@ -40,14 +40,14 @@
             </div>
             <a href="/blogs/<%= blogs[0].id %>">
                 <div class="main-blog-title-wrapper">
-                    <h3 class="main-blog-title"><%= blogs[0].title %></h3>
+                    <h3 class="main-blog-title main-title"><%= blogs[0].title %></h3>
                     <figure>
                         <img src="/images/arrow-up-right.svg" alt="arrow-up-right">
                     </figure>
                 </div>
             </a>
             <div class="main-blog-text-wrapper">
-                <p class="main-blog-text">
+                <p class="main-blog-text main-text">
                     <%= blogs[0].description.slice(0, 260) %>...
                 </p>
             </div>
@@ -66,11 +66,11 @@
                             • <%= blogs[1].formatedDate %></p>
                     </div>
                     <a href="/blogs/<%= blogs[1].id %>">
-                        <h3 class="secondary-blog-title">
+                        <h3 class="secondary-blog-title main-title">
                             <%= blogs[1].title.slice(0, 20) %>
                         </h3>
                     </a>
-                    <p class="secondary-blog-text"><%= blogs[1].description.slice(0, 136) %></p>
+                    <p class="secondary-blog-text main-text"><%= blogs[1].description.slice(0, 136) %></p>
                 </div>
             </div>
             <div class="secondary-blog-wrapper">
@@ -85,11 +85,11 @@
                             • <%= blogs[2].formatedDate %></p>
                     </div>
                     <a href="/blogs/<%= blogs[2].id %>">
-                        <h3 class="secondary-blog-title">
+                        <h3 class="secondary-blog-title main-title">
                             <%= blogs[2].title.slice(0, 20) %>
                         </h3>
                     </a>
-                    <p class="secondary-blog-text"><%= blogs[2].description.slice(0, 136) %></p>
+                    <p class="secondary-blog-text main-text"><%= blogs[2].description.slice(0, 136) %></p>
                 </div>
             </div>
         </div>
@@ -105,20 +105,20 @@
                 • <%= blogs[3].formatedDate %></p>
             <a href="/blogs/<%= blogs[3].id %>">
                 <div class="recent-blogs-content-below-card-title-wrapper">
-                    <h3 class="recent-blogs-content-below-card-title"><%= blogs[3].title.slice(0, 20) %></h3>
+                    <h3 class="recent-blogs-content-below-card-title main-title"><%= blogs[3].title.slice(0, 20) %></h3>
                     <figure>
                         <img src="/images/arrow-up-right.svg" alt="arrow-up-right">
                     </figure>
                 </div>
             </a>
-            <p class="recent-blogs-content-below-card-text">
+            <p class="recent-blogs-content-below-card-text main-text">
                 <%= blogs[3].description.slice(0, 260) %>
             </p>
         </div>
     </div>
 </section>
 <section class="all-blogs container">
-    <h3 class="recent-blogs-title">All blog posts</h3>
+    <h3 class="recent-blogs-title main-title">All blog posts</h3>
     <div class="all-blogs-grid">
         <% blogs.splice(0, 6).forEach((blog, index)=>{ %>
             <div class="all-blogs-card">
@@ -131,9 +131,9 @@
                     <p class="author-date-label"><%= blog.author %> • <%= blog.formatedDate %></p>
                 </div>
                 <a href="/blogs/<%= blog.id %>">
-                    <h3 class="all-blogs-card-title"><%= blog.title.slice(0, 20) %> </h3>
+                    <h3 class="all-blogs-card-title main-title"><%= blog.title.slice(0, 20) %> </h3>
                 </a>
-                <p class="all-blogs-card-text"><%= blog.description.slice(0, 90) %> </p>
+                <p class="all-blogs-card-text main-text"><%= blog.description.slice(0, 90) %> </p>
             </div>
         <% }) %>
     </div>

@@ -1,7 +1,7 @@
 <header class="container">
     <div class="username">
         <a href="/">
-            <p>
+            <p class="nav-username main-title">
                 <%= email ? email.split('@')[0] : null %>
             </p>
         </a>
@@ -9,13 +9,15 @@
     <div class="nav-wrapper">
         <nav class="main-nav">
             <ul class="nav-list-wrapper">
-                <li><a class="nav-link" href="/">Blog</a></li>
-                <li><a class="nav-link" href="/about">About</a></li>
-                <li><a class="nav-link" href="/newsletter">Newsletter</a></li>
+                <li><a class="nav-link main-title" href="/">Blog</a></li>
+                <li><a class="nav-link main-title" href="/about">About</a></li>
+                <li><a class="nav-link main-title" href="/newsletter">Newsletter</a></li>
                 <% if (email) { %>
-                    <li><a class="nav-link" href="/blogs/new">Create New Blog</a></li>
-                    <li><a style="color: #6e0000" class="nav-link" href="/logout">Logout</a></li>
+                    <li><a class="nav-link main-title" href="/blogs/new">Create New Blog</a></li>
+                    <li><a class="logout-btn" href="/logout">Logout</a></li>
                 <% } %>
+                <li> <button class="dark-mode-btn" onclick="toggleTheme()"></button></li>
+
             </ul>
         </nav>
 
@@ -36,6 +38,8 @@
         </figure>
     </div>
 </header>
+
+<script src="/javascripts/dark-mode.js"></script>
 
 <script>
     const burger = document.getElementById('burger');

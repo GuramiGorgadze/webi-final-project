@@ -18,7 +18,7 @@
 <%- include('partials/header', {email: null}); %>
 
 <div class="form-container container">
-    <h1 class="title container">SIGN IN</h1>
+    <h1 class="title container main-title">SIGN IN</h1>
 
     <% if (error) { %>
         <p class="error"><%= error %></p>
@@ -27,10 +27,10 @@
     <form action="/login" method="POST">
         <input type="email" name="email" placeholder="Email" required>
         <input type="password" name="password" placeholder="Password" required>
-        <button type="submit">Sign In</button>
+        <button class="auth-btn main-btn" type="submit">Sign In</button>
     </form>
 
-    <a class="sign-up-btn" href="/register">Don't have an account? Sign up here</a>
+    <a class="sign-up-btn main-title" href="/register">Don't have an account? Sign up here</a>
 </div>
 
     <%- include('partials/footer'); %>

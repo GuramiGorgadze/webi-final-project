@@ -5,7 +5,6 @@
 }
 
 .title {
-    color: #1A1A1A;
     text-align: center;
     font-family: Inter, sans-serif;
     font-size: 140px;
@@ -63,7 +62,6 @@
 }
 
 .recent-blogs-title {
-    color: #1A1A1A;
     font-family: Inter, monospace;
     font-size: 24px;
     font-style: normal;
@@ -112,7 +110,6 @@
 }
 
 .main-blog-title {
-    color: #1A1A1A;
     font-family: Inter, sans-serif;
     font-size: 24px;
     font-style: normal;
@@ -142,7 +139,6 @@
 }
 
 .main-blog-text {
-    color: #667085;
     font-family: Inter, sans-serif;
     font-size: 16px;
     font-style: normal;
@@ -186,7 +182,6 @@
 .secondary-blog-title {
     width: 100%;
     margin-top: 12px;
-    color: #1A1A1A;
     font-family: Inter, sans-serif;
     font-size: 18px;
     font-style: normal;
@@ -197,7 +192,6 @@
 }
 
 .secondary-blog-text {
-    color: #667085;
     font-family: Inter, sans-serif;
     font-size: 16px;
     font-style: normal;
@@ -264,7 +258,6 @@ a:hover {
 
 .recent-blogs-content-below-card-text {
     margin-top: 12px;
-    color: #667085;
     font-family: Inter, monospace;
     font-size: 16px;
     font-style: normal;
@@ -282,7 +275,6 @@ a:hover {
     font-size: 24px;
     line-height: 32px;
     letter-spacing: 0;
-    color: #1A1A1A;
     margin-top: 12px;
 }
 
@@ -313,7 +305,6 @@ a:hover {
     font-size: 16px;
     line-height: 24px;
     letter-spacing: 0;
-    color: #667085;
     margin-top: 12px;
 }
 
@@ -325,9 +316,3 @@ a:hover {
     width: 100%;
 }
 
-@media (max-width: 768px) {
-    /*.all-blogs-img {*/
-    /*    height: 140px;*/
-    /*    object-fit: cover;*/
-    /*}*/
-}

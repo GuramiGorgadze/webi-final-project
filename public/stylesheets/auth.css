@@ -7,7 +7,6 @@ body {
 }
 
 .title {
-    color: #1A1A1A;
     text-align: center;
     font-family: Inter, sans-serif;
     font-size: 180px;
@@ -82,10 +81,8 @@ input {
     }
 }
 
-button {
+.auth-btn {
     width: 955px;
-    background-color: #1A1A1A;
-    color: #FFF;
     text-align: center;
     font-family: Sen, sans-serif;
     font-size: 24px;
@@ -100,19 +97,19 @@ button {
     border-radius: 2px;
 }
 
-button:hover {
+.auth-btn:hover {
     background-color: #FFF;
     color: #1A1A1A;
 }
 
 @media (max-width: 1440px) {
-    button {
+    .auth-btn {
         width: 755px;
     }
 }
 
 @media (max-width: 1024px) {
-    button {
+    .auth-btn {
         width: 90%;
     }
 }
