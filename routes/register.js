@@ -13,6 +13,7 @@ router.get('/', function (req, res, next) {
 
 router.post('/', async function (req, res, next) {
     const {email, password, confirmPassword} = req.body;
+    const name = email.split('@')[0];
 
     if (confirmPassword !== password) {
         return res.render('register', {error: 'Passwords do not match'});
@@ -29,10 +30,15 @@ router.post('/', async function (req, res, next) {
         const salt = bcrypt.genSaltSync(10);
         const hashedPassword = bcrypt.hashSync(password, salt);
 
-        const newUser = new User({email, password: hashedPassword});
-        await newUser.save();
+        const newUser = new User({name, email, password: hashedPassword});
+        const savedUser = await newUser.save();
 
-        req.session.user = {email}
+        req.session.user = {
+            _id: savedUser._id,
+            name: savedUser.name,
+            email: savedUser.email,
+            profilePicture: savedUser.profilePicture
+        };
 
         res.redirect('/blogs');
     } catch (err) {

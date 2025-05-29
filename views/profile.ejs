@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>The Blog | Profile</title>
+    <link rel="stylesheet" href="./stylesheets/header.css">
+    <link rel="stylesheet" href="./stylesheets/profile.css">
+    <link rel="stylesheet" href="./stylesheets/style.css">
+    <link rel="stylesheet" href="./stylesheets/footer.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Sen:wght@400..800&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="./images/blog-icon.svg" type="image/x-icon">
+</head>
+<body>
+    <%- include('partials/header', {name: user.name}); %>
+
+    <div class="profile-wrapper container">
+        <div class="user-wrapper">
+            <img src="<%= user.profilePicture %>" alt="profilePicture">
+
+            <button class="profile-btn main-btn">Change picture</button>
+        </div>
+
+        <div class="info-wrapper">
+            <label class="main-title" for="name">Username:</label>
+            <input class="profile-input" name="name" type="text" value="<%= user.name %>">
+
+            <label class="main-title for="email">Email:</label>
+            <input class="profile-input" name="email" type="text" value="<%= user.email %>">
+
+            <a class="main-text" href="">Reset Password</a>
+
+            <div class="option-wrapper">
+                <button class='profile-btn option-btn main-btn'>Save</button>
+
+                <a class="profile-btn logout-btn" href="/logout">Logout</a>
+            </div>
+        </div>
+    </div>
+
+    <%- include('partials/footer'); %>
+</body>
+</html>

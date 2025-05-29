@@ -13,11 +13,11 @@ const requireAuth = (req, res, next) => {
 }
 
 router.get('/', requireAuth, async function (req, res) {
-    const email = req.session.user.email;
+    const user = req.session.user;
     const blogs = await Blog.find();
     blogs.reverse()
 
-    res.render('newsletter', {email, blogs, message: null, success: null});
+    res.render('newsletter', {user, blogs, message: null, success: null});
 });
 
 router.post('/add', requireAuth, async function (req, res) {
@@ -30,7 +30,7 @@ router.post('/add', requireAuth, async function (req, res) {
 
         if (isSubscribed) {
             return res.render('newsletter', {
-                email: req.session.user.email,
+                user: req.session.user,
                 blogs,
                 message: 'You are already subscribed to the newsletter',
                 success: false
@@ -41,7 +41,7 @@ router.post('/add', requireAuth, async function (req, res) {
         await newSubscriber.save();
 
         res.render('newsletter', {
-            email: req.session.user.email,
+            user: req.session.user,
             blogs,
             message: 'You have been successfully subscribed to the newsletter',
             success: true
@@ -49,7 +49,7 @@ router.post('/add', requireAuth, async function (req, res) {
     } catch (err) {
         console.error(err);
         res.render('newsletter', {
-            email: req.session.user.email,
+            user: req.session.user,
             blogs,
             message: 'Please try again',
             success: false

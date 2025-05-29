@@ -1,8 +1,8 @@
 <header class="container">
     <div class="username">
-        <a href="/">
+        <a href="/profile">
             <p class="nav-username main-title">
-                <%= email ? email.split('@')[0] : null %>
+                <%= name %>
             </p>
         </a>
     </div>
@@ -12,9 +12,8 @@
                 <li><a class="nav-link main-title" href="/">Blog</a></li>
                 <li><a class="nav-link main-title" href="/about">About</a></li>
                 <li><a class="nav-link main-title" href="/newsletter">Newsletter</a></li>
-                <% if (email) { %>
+                <% if (name) { %>
                     <li><a class="nav-link main-title" href="/blogs/new">Create New Blog</a></li>
-                    <li><a class="logout-btn" href="/logout">Logout</a></li>
                 <% } %>
                 <li class="mode-wrapper">
                     <input type="checkbox" id="themeToggle" class="theme-checkbox" onchange="toggleTheme()">

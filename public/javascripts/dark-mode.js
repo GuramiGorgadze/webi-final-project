@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // This controls whether dark mode button should be checked or not
+    // and adds class to body for dark mode
     if (savedTheme === 'dark') {
         document.body.classList.add('dark-mode');
         checkbox.checked = true;
@@ -21,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateArrowIcons('light');
     }
 
+    // This function updates the theme in localStorage
     window.toggleTheme = function () {
         const isDark = checkbox.checked;
         document.body.classList.toggle('dark-mode', isDark);

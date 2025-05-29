@@ -2,9 +2,9 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', function (req, res, next) {
-    const email = req.session.user ? req.session.user.email : null;
+    const user = req.session.user ?  req.session.user : null;
 
-    res.render('about', { email })
+    res.render('about', { user })
 });
 
 module.exports = router;

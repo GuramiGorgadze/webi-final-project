@@ -16,14 +16,14 @@ router.get('/', requireAuth, async function (req, res, next) {
     const blogs = await Blog.find({});
     blogs.reverse()
 
-    const email = req.session.user.email;
+    const user = req.session.user;
 
-    res.render('blogs', {blogs, email});
+    res.render('blogs', {blogs, user});
 });
 
 router.get('/new', requireAuth, function (req, res, next) {
-    const email = req.session.user.email;
-    res.render('new_blog', {error: null, email});
+    const user = req.session.user;
+    res.render('new_blog', {error: null, user});
 });
 
 router.post('/new', requireAuth, async function (req, res, next) {
@@ -73,6 +73,7 @@ router.post('/new', requireAuth, async function (req, res, next) {
 });
 
 router.get('/:blogId', requireAuth, async function (req, res, next) {
+    const user = req.session.user;
     const email = req.session.user.email;
     const {blogId} = req.params
 
@@ -80,7 +81,7 @@ router.get('/:blogId', requireAuth, async function (req, res, next) {
         const blogs = await Blog.find();
         blogs.reverse()
         const blog = await Blog.findOne({id: blogId});
-        res.render('blog', {email, blogs, blog});
+        res.render('blog', {user, email, blogs, blog});
     } catch (err) {
         console.log(err);
     }
