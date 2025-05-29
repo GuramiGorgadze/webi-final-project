@@ -16,8 +16,9 @@
                     <li><a class="nav-link main-title" href="/blogs/new">Create New Blog</a></li>
                     <li><a class="logout-btn" href="/logout">Logout</a></li>
                 <% } %>
-                <li> <button class="dark-mode-btn" onclick="toggleTheme()"></button></li>
-
+                <li class="mode-wrapper">
+                    <input type="checkbox" id="themeToggle" class="theme-checkbox" onchange="toggleTheme()">
+                </li>
             </ul>
         </nav>
 

@@ -23,9 +23,9 @@
         <p class="error"><%= error %></p>
    <% } %>
     <form action="/register" method="POST">
-        <input type="email" name="email" placeholder="Email" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <input type="password" name="confirmPassword" placeholder="Confirm Password" required>
+        <input class="auth-input" type="email" name="email" placeholder="Email" required>
+        <input class="auth-input" type="password" name="password" placeholder="Password" required>
+        <input class="auth-input" type="password" name="confirmPassword" placeholder="Confirm Password" required>
         <button class="auth-btn main-btn" type="submit">Register</button>
     </form>
     <a class="sign-up-btn main-title" href="/login">Already have an account? Login here</a>

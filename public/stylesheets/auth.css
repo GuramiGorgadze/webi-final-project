@@ -56,7 +56,7 @@ form {
     }
 }
 
-input {
+.auth-input {
     border-radius: 2px;
     border: 1px solid rgba(109, 110, 118, 0.50);
     padding: 24px;
@@ -70,13 +70,13 @@ input {
 }
 
 @media (max-width: 1440px) {
-    input {
+    .auth-input {
         width: 755px;
     }
 }
 
 @media (max-width: 1024px) {
-    input {
+    .auth-input {
         width: 90%;
     }
 }
