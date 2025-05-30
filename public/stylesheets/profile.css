@@ -5,11 +5,37 @@
     padding: 45px 0 20px 0;
 }
 
+@media (max-width: 768px) {
+    .profile-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.user-img {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+@media (max-width: 375px) {
+    .user-img {
+        width: 80%;
+    }
+}
+
 .user-wrapper {
     display: flex;
     flex-direction: column;
     width: 300px;
-    gap: 20px;
+    gap: 40px;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    box-sizing: border-box;
 }
 
 .info-wrapper {
@@ -18,6 +44,58 @@
     width: 100%;
     padding-left: 100px;
     gap: 20px;
+}
+
+
+@media (max-width: 768px) {
+    .info-wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 75%;
+        padding-left: 0;
+        margin-top: 50px;
+    }
+}
+
+.profile-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+}
+
+.picture-input {
+    display: none;
+}
+
+.file-label {
+    padding: 12px 14px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.file-label:hover {
+    background-color: #FFF;
+    color: #1A1A1A;
+    border: 1px solid #1A1A1A;
+}
+
+.upload-btn {
+    font-family: Sen, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 32px;
+    padding: 20px 24px;
+    border: 1px solid #1A1A1A;
+    transition: all 0.2s;
+    border-radius: 2px;
+    box-sizing: border-box;
+}
+
+.upload-btn:hover {
+    background-color: #FFF;
+    color: #1A1A1A;
 }
 
 .profile-btn {
@@ -31,7 +109,8 @@
     cursor: pointer;
     transition: all 0.2s;
     border-radius: 2px;
-    margin-top: 25px;
+    margin-top: 35px;
+    box-sizing: border-box;
 }
 
 .profile-btn:hover {
@@ -57,9 +136,27 @@
     justify-content: space-between;
 }
 
+@media (max-width: 425px) {
+    .option-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+
 .option-btn {
     width: 90%;
     margin-right: 50px;
+    text-align: center;
+}
+
+@media (max-width: 425px) {
+    .option-btn {
+        width: 100%;
+        margin: 0;
+    }
 }
 
 .logout-btn {
@@ -67,4 +164,10 @@
     width: 80%;
     background-color: #af3939;
     text-align: center;
+}
+
+@media (max-width: 425px) {
+    .logout-btn {
+        width: 100%;
+    }
 }

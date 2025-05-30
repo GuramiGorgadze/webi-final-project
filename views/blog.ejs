@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="./images/blog-icon.svg" type="image/x-icon">
 </head>
 <body>
-<%- include('partials/header', {name: user.name}); %>
+<%- include('partials/header', {name: user.name, profilePicture: user.profilePicture }); %>
 
 <div class="container blog-wrapper">
     <div class="recent-blogs">
@@ -82,7 +82,7 @@
                             <form action="/blogs/<%= blog.id %>/comment/<%= comment.id %>/like" method="post">
                                 <button class="like-btn">
                                     <% if( comment.likes.includes(email)) { %>
-                                        <img src="/images/like-icon-red.svg" alt="like-icon">
+                                        <img src="/images/like-icon-white.svg" alt="like-icon">
                                     <% } else { %>
                                         <img src="/images/like-icon.svg" alt="like-icon">
                                     <% } %>

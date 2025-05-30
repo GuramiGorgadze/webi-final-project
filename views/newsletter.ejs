@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="./images/blog-icon.svg" type="image/x-icon">
 </head>
 <body>
-    <%- include('partials/header', {name: user.name}); %>
+<%- include('partials/header', {name: user.name, profilePicture: user.profilePicture }); %>
 
     <div class="newsletter-wrapper container">
         <div class="subscribe">

@@ -1,6 +1,9 @@
 <header class="container">
     <div class="username">
-        <a href="/profile">
+        <a class="name-wrapper" href="/profile">
+            <% if(profilePicture) {%>
+                <img class="header-pic" src="<%= profilePicture %>" alt="">
+            <% } %>
             <p class="nav-username main-title">
                 <%= name %>
             </p>
@@ -30,13 +33,14 @@
 
     <div class="mobile-menu" id="mobileMenu">
         <a class="nav-link" href="/">Blog</a>
-        <a class="nav-link" href="/">Projects</a>
-        <a class="nav-link" href="/">About</a>
-        <a class="nav-link" href="/">Newsletter</a>
+        <a class="nav-link" href="/about">About</a>
+        <a class="nav-link" href="/newsletter">Newsletter</a>
         <figure class="close-btn-wrapper" id="close-btn-wrapper">
             <img src="/images/close-icon.svg" alt="">
         </figure>
+        <input type="checkbox" id="mobileThemeToggle" class="theme-checkbox" onchange="toggleTheme()">
     </div>
+
 </header>
 
 <script src="/javascripts/dark-mode.js"></script>

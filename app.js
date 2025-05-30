@@ -19,6 +19,7 @@ const profileRouter = require('./routes/profile');
 
 
 const {connectDatabase} = require("./database/database");
+const fileUpload = require("express-fileupload");
 
 const app = express();
 
@@ -39,6 +40,7 @@ app.use(session({
     saveUninitialized: false,
     cookie: {secure: false} // Set secure: true in production with HTTPS
 }));
+app.use(fileUpload());
 
 
 app.use('/', indexRouter);

@@ -1,33 +1,41 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const checkbox = document.getElementById('themeToggle');
-    const savedTheme = localStorage.getItem('theme');
 
-    // This function changes arrow colors
-    function updateArrowIcons(theme) {
-        const arrows = document.querySelectorAll('.theme-arrow');
-        arrows.forEach(img => {
-            img.src = theme === 'dark'
-                ?  '/images/arrow-up-right-light.svg'
-                :  '/images/arrow-up-right.svg';
+    // get both desktop and mobile toggles from HTML
+    const toggles = [
+        document.getElementById('themeToggle'),
+        document.getElementById('mobileThemeToggle')
+    ];
+
+    // get theme from localStorage. If there is nothing saved, it will be light
+    const savedTheme = localStorage.getItem('theme') || 'light';
+
+    function applyTheme(theme) {
+        // if it is already dark, it will remove the class
+        document.body.classList.toggle('dark-mode', theme === 'dark');
+        localStorage.setItem('theme', theme);
+        updateArrowIcons(theme);
+        // if the theme is dark it will check the toggles
+        toggles.forEach(toggle => {
+            toggle.checked = theme === 'dark';
         });
     }
 
-    // This controls whether dark mode button should be checked or not
-    // and adds class to body for dark mode
-    if (savedTheme === 'dark') {
-        document.body.classList.add('dark-mode');
-        checkbox.checked = true;
-        updateArrowIcons('dark');
-    } else {
-        checkbox.checked = false;
-        updateArrowIcons('light');
+    // Updates arrow sources as there are two different color images
+    function updateArrowIcons(theme) {
+        document.querySelectorAll('.theme-arrow').forEach(img => {
+            img.src = theme === 'dark'
+                ? '/images/arrow-up-right-light.svg'
+                : '/images/arrow-up-right.svg';
+        });
     }
 
-    // This function updates the theme in localStorage
-    window.toggleTheme = function () {
-        const isDark = checkbox.checked;
-        document.body.classList.toggle('dark-mode', isDark);
-        localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        updateArrowIcons(isDark ? 'dark' : 'light');
+    // applies saved theme on a page load
+    applyTheme(savedTheme);
+
+    // Toggle function
+    window.toggleTheme = () => {
+        const current = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+        const next = current === 'dark' ? 'light' : 'dark';
+        applyTheme(next);
     };
 });

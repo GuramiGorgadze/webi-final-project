@@ -16,29 +16,37 @@
     <link rel="shortcut icon" href="./images/blog-icon.svg" type="image/x-icon">
 </head>
 <body>
-    <%- include('partials/header', {name: user.name}); %>
+    <%- include('partials/header', {name: user.name, profilePicture: user.profilePicture }); %>
 
     <div class="profile-wrapper container">
-        <div class="user-wrapper">
-            <img src="<%= user.profilePicture %>" alt="profilePicture">
+        <form action="/profile/upload-picture" method="POST" enctype="multipart/form-data">
+            <div class="user-wrapper">
+                <img class="user-img" src="<%= user.profilePicture %>" alt="Profile Picture">
 
-            <button class="profile-btn main-btn">Change picture</button>
-        </div>
+                <div class="picture-input-wrapper">
+                    <label for="file-upload" class="file-label main-btn">Upload Image</label>
+                    <input id="file-upload" class="picture-input" type="file" name="image" required>
+                </div>
+                <button class="upload-btn main-btn" type="submit">Change Picture</button>
+            </div>
+        </form>
 
         <div class="info-wrapper">
-            <label class="main-title" for="name">Username:</label>
-            <input class="profile-input" name="name" type="text" value="<%= user.name %>">
+            <form class="profile-form" action="/profile/save" method="POST">
+                <label class="main-title" for="name">Username:</label>
+                <input class="profile-input" name="name" type="text" value="<%= user.name %>">
 
-            <label class="main-title for="email">Email:</label>
-            <input class="profile-input" name="email" type="text" value="<%= user.email %>">
+                <label class="main-title" for="email">Email:</label>
+                <input class="profile-input" name="email" type="text" value="<%= user.email %>">
 
-            <a class="main-text" href="">Reset Password</a>
+                <a class="main-text" href="">Reset Password</a>
 
-            <div class="option-wrapper">
-                <button class='profile-btn option-btn main-btn'>Save</button>
+                <div class="option-wrapper">
+                    <button class='profile-btn option-btn main-btn'>Save</button>
 
-                <a class="profile-btn logout-btn" href="/logout">Logout</a>
-            </div>
+                    <a class="profile-btn logout-btn" href="/logout">Logout</a>
+                </div>
+            </form>
         </div>
     </div>
 
