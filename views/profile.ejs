@@ -34,10 +34,10 @@
         <div class="info-wrapper">
             <form class="profile-form" action="/profile/save" method="POST">
                 <label class="main-title" for="name">Username:</label>
-                <input class="profile-input" name="name" type="text" value="<%= user.name %>">
+                <input class="profile-input" name="name" type="text" minlength="5" maxlength="12" value="<%= user.name %>">
 
                 <label class="main-title" for="email">Email:</label>
-                <input class="profile-input" name="email" type="text" value="<%= user.email %>">
+                <input class="profile-input" name="email" minlength="10" maxlength="30" type="email" value="<%= user.email %>">
 
                 <a class="main-text" href="">Reset Password</a>
 
@@ -49,6 +49,28 @@
             </form>
         </div>
     </div>
+
+    <section class="all-blogs container">
+        <h3 class="recent-blogs-title main-title">All blog posts</h3>
+        <div class="all-blogs-grid">
+            <% blogs.splice(0, 6).forEach((blog, index)=>{ %>
+                <div class="all-blogs-card">
+                    <a href="/blogs/<%= blog.id %>">
+                        <figure>
+                            <img class="all-blogs-img" src="/images/thumbnails/normal/<%= index %>.png" alt="thumbnail">
+                        </figure>
+                    </a>
+                    <div>
+                        <p class="author-date-label"><%= blog.author %> • <%= blog.formatedDate %></p>
+                    </div>
+                    <a href="/blogs/<%= blog.id %>">
+                        <h3 class="all-blogs-card-title main-title"><%= blog.title.slice(0, 20) %> </h3>
+                    </a>
+                    <p class="all-blogs-card-text main-text"><%= blog.description.slice(0, 90) %> </p>
+                </div>
+            <% }) %>
+        </div>
+    </section>
 
     <%- include('partials/footer'); %>
 </body>

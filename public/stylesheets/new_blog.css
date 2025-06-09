@@ -125,3 +125,26 @@ form {
     }
 }
 
+.picture-input-wrapper {
+    margin: 10px;
+}
+
+@media (max-width: 340px) {
+    .picture-btn {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 310px) {
+    .picture-btn {
+        padding: 5px;
+        font-size: 14px;
+    }
+}
+
+
+.picture-input {
+    display: none;
+}
+
+

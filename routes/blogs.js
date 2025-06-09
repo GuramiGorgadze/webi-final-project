@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const Blog = require('../models/blog');
+const path = require("path");
+const User = require("../models/user");
 
 
 const requireAuth = (req, res, next) => {
@@ -27,48 +29,52 @@ router.get('/new', requireAuth, function (req, res, next) {
 });
 
 router.post('/new', requireAuth, async function (req, res, next) {
-    const {title, description, content} = req.body;
+    const sessionUser = req.session.user;
+    const { title, description, content } = req.body;
+    const { image } = req.files;
 
     if (!title || !content) {
-        res.render("new_blog", {error: "Missing title or content"});
+        return res.render("new_blog", { error: "Missing title or content" });
     }
 
-    const currentDate = new Date();
-    const currentDay = currentDate.getDate();
-    const currentMonth = currentDate.getMonth();
-    const currentYear = currentDate.getFullYear();
-    const months = [
-        'Jan',
-        'Feb',
-        'Mar',
-        'Apr',
-        'May',
-        'Jun',
-        'Jul',
-        'Aug',
-        'Sep',
-        'Oct',
-        'Nov',
-        'Dec'
-    ];
-    const currentMonthString = months[currentMonth];
-    const formatedDate = `${currentDay} ${currentMonthString} ${currentYear}`;
-    const newBlogData = {
-        id: String(Date.now()),
-        title,
-        description,
-        content,
-        author: req.session.user.email,
-        date: new Date().toLocaleString(),
-        formatedDate
-    }
+    const uniqueSuffix = Date.now();
+    const filename = `${sessionUser._id}_blog_${uniqueSuffix}_${image.name}`;
+
+    const uploadPath = path.join(__dirname, '..', 'public', 'uploads', filename);
+    const relativePath = `/uploads/${filename}`;
 
     try {
+        await image.mv(uploadPath);
+
+        const currentDate = new Date();
+        const currentDay = currentDate.getDate();
+        const currentMonth = currentDate.getMonth();
+        const currentYear = currentDate.getFullYear();
+        const months = [
+            'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+        ];
+        const currentMonthString = months[currentMonth];
+        const formatedDate = `${currentDay} ${currentMonthString} ${currentYear}`;
+
+        const newBlogData = {
+            id: String(Date.now()),
+            title,
+            description,
+            content,
+            picture: relativePath,
+            author: req.session.user.email,
+            date: new Date().toLocaleString(),
+            formatedDate
+        };
+
         const newBlog = new Blog(newBlogData);
         await newBlog.save();
+
         res.redirect('/blogs');
     } catch (err) {
-        console.log(err);
+        console.error(err);
+        res.status(500).send("An error occurred while uploading the blog.");
     }
 });
 
@@ -100,11 +106,11 @@ router.post('/:blogId/newComment', requireAuth, async function (req, res, next) 
         const comment = {
             id: String(Date.now()),
             content: newComment,
-            author: req.session.user.email,
+            author: req.session.user.name,
+            authorPicture: req.session.user.profilePicture,
             replies: []
         };
 
-        // Using $push operator to add the new comment to the comments array
         await Blog.updateOne(
             {id: blogId},
             {$push: {comments: comment}}
@@ -154,7 +160,8 @@ router.post('/:blogId/comment/:commentId/reply', requireAuth, async function (re
     try {
         const reply = {
             content: replyContent,
-            author: req.session.user.email
+            author: req.session.user.email,
+            authorPicture: req.session.user.profilePicture
         };
 
         // Using $push to add the reply to the specific comment's replies array

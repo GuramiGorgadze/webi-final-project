@@ -10,6 +10,10 @@ const commentSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    authorPicture: {
+        type: String,
+        required: true
+    },
     date: {
         type: Date,
         default: Date.now
@@ -17,6 +21,7 @@ const commentSchema = new mongoose.Schema({
     replies: [{
         content: String,
         author: String,
+        authorPicture: String,
         date: {
             type: Date,
             default: Date.now
@@ -31,6 +36,7 @@ const blogSchema = new mongoose.Schema({
     description: String,
     content: String,
     author: String,
+    picture: String,
     date: String,
     formatedDate: String,
     comments: [commentSchema],

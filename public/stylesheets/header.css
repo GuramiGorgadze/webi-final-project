@@ -8,6 +8,7 @@ header {
 .username {
     display: flex;
     align-items: center;
+    width: 80%;
 }
 
 .name-wrapper {

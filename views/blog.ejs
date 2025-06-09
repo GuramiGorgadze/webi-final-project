@@ -28,8 +28,7 @@
                 <div>
                     <a href="/blogs/<%= blog.id %>">
                         <figure>
-                            <img class="recent-blog-image" src="/images/thumbnails/normal/<%= index %>.png"
-                                 alt="thumbnail">
+                            <img class="recent-blog-image" src="<%= blog.picture %>" alt="thumbnail">
                         </figure>
                     </a>
 
@@ -67,7 +66,7 @@
                     <div class="comment-header">
                         <figure class="author-wrapper">
                             <img class="comment-author-img"
-                                 src="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png"
+                                 src="<%= comment.authorPicture %>"
                                  alt="user-image">
                             <div>
                                 <p class="author-username"> <%= comment.author.split('@')[0] %></p>
@@ -109,7 +108,7 @@
                                 <figure class="author-wrapper">
                                     <img class="comment-author-img"
                                          id="reply-author-img"
-                                         src="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png"
+                                         src="<%= reply.authorPicture %>"
                                          alt="user-image">
                                     <div>
                                         <p id="reply-author-username"
