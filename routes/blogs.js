@@ -31,10 +31,10 @@ router.get('/new', requireAuth, function (req, res, next) {
 router.post('/new', requireAuth, async function (req, res, next) {
     const sessionUser = req.session.user;
     const { title, description, content } = req.body;
-    const { image } = req.files;
+    const image = req.files?.image;
 
-    if (!title || !content) {
-        return res.render("new_blog", { error: "Missing title or content" });
+    if (!title || !description || !content || !image) {
+        return res.render("new_blog", { error: "All fields are required", user: sessionUser });
     }
 
     const uniqueSuffix = Date.now();

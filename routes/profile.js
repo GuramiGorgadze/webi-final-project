@@ -21,19 +21,38 @@ router.get('/', requireAuth, async function (req, res, next) {
 
     const userBlogs = await Blog.find({author: user.email });
 
-    res.render('profile', {user, blogs: userBlogs});
+    res.render('profile', {user, blogs: userBlogs, error: null });
 });
 
-router.post('/save', requireAuth, async function (req, res, next) {
+router.post('/', requireAuth, async function (req, res, next) {
     const { name, email } = req.body;
     const sessionUser = req.session.user;
+    const user = req.session.user;
+    const userBlogs = await Blog.find({author: user.email });
 
-    await User.updateOne({ id: sessionUser.id }, { name, email });
+    try {
+        // Check for duplicate name (excludes this season user)
+        const existingName = await User.findOne({ name, _id: { $ne: sessionUser._id } });
+        if (existingName) {
+            return res.render('profile', {user, blogs: userBlogs, error: 'Name is not available' })
+        }
 
-    const updatedUser = await User.findOne({ id: sessionUser.id });
-    req.session.user = updatedUser;
+        // Check for duplicate email (excludes this season user)
+        const existingEmail = await User.findOne({ email, _id: { $ne: sessionUser._id } });
+        if (existingEmail) {
+            return res.render('profile', {user, blogs: userBlogs, error: 'Email already exists'})
+        }
 
-    res.redirect('/profile');
+        await User.updateOne({ _id: sessionUser._id }, { name, email });
+        await Blog.updateMany({ author: user.email }, { $set: { author: email } });
+
+        const updatedUser = await User.findOne({ _id: sessionUser._id });
+        req.session.user = updatedUser;
+
+        res.redirect('/profile');
+    } catch (err) {
+        console.log(err)
+    }
 });
 
 router.post('/upload-picture', requireAuth, async function (req, res, next) {

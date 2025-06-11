@@ -1,0 +1,17 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.error-message {
+    font-family: Inter, monospace;
+    font-size: 30px;
+}
+
+.error-status {
+    font-family: Inter, monospace;
+    font-size: 70px;
+}

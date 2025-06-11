@@ -32,14 +32,15 @@
         </form>
 
         <div class="info-wrapper">
-            <form class="profile-form" action="/profile/save" method="POST">
+            <form class="profile-form" action="/profile" method="POST">
                 <label class="main-title" for="name">Username:</label>
                 <input class="profile-input" name="name" type="text" minlength="5" maxlength="12" value="<%= user.name %>">
 
                 <label class="main-title" for="email">Email:</label>
                 <input class="profile-input" name="email" minlength="10" maxlength="30" type="email" value="<%= user.email %>">
 
-                <a class="main-text" href="">Reset Password</a>
+                <a class="add-wrapper main-text" href="">Reset Password <p class="main-title"><%= error %></p></a>
+
 
                 <div class="option-wrapper">
                     <button class='profile-btn option-btn main-btn'>Save</button>
@@ -51,13 +52,13 @@
     </div>
 
     <section class="all-blogs container">
-        <h3 class="recent-blogs-title main-title">All blog posts</h3>
+        <h3 class="recent-blogs-title main-title">Your blog posts</h3>
         <div class="all-blogs-grid">
             <% blogs.splice(0, 6).forEach((blog, index)=>{ %>
                 <div class="all-blogs-card">
                     <a href="/blogs/<%= blog.id %>">
                         <figure>
-                            <img class="all-blogs-img" src="/images/thumbnails/normal/<%= index %>.png" alt="thumbnail">
+                            <img class="all-blogs-img" src="<%= blog.picture %>" alt="thumbnail">
                         </figure>
                     </a>
                     <div>

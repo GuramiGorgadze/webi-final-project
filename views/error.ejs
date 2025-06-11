@@ -1,3 +1,16 @@
-<h1><%= message %></h1>
-<h2><%= error.status %></h2>
-<pre><%= error.stack %></pre>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>The Blog | Error</title>
+    <link rel="stylesheet" href="./stylesheets/error.css">
+</head>
+<body>
+        <h2 class="error-status"><%= error.status %></h2>
+        <h3 class="error-message"><%= message + ' :(' %></h3>
+</body>
+</html>
+
