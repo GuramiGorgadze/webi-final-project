@@ -16,7 +16,7 @@ router.post('/', async function (req, res, next) {
     const name = email.split('@')[0];
 
     if (confirmPassword !== password) {
-        return res.render('register', {error: 'Passwords do not match'});
+        return res.render('register',  {error: 'Passwords do not match'});
     }
 
     try {
