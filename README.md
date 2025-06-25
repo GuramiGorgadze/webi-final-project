@@ -35,7 +35,7 @@
     - [Prerequisites](#prerequisites)
     - [Installation](#installation)
     - [Usage](#usage)
-    - [.env For Testing](#.env for testing)
+    - [.env For Testing](#.ENV)
 
 ---
 
