@@ -4,6 +4,9 @@ body {
 
 .form-container {
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .title {
@@ -152,4 +155,30 @@ form {
     color: darkred;
     margin-top: 35px;
     text-align: center;
+}
+
+
+.google-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: white;
+    color: #444;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 14px;
+    width: fit-content;
+    margin-top: 20px;
+    transition: all 0.3s;
+}
+
+.google-btn img {
+    width: 20px;
+    height: 20px;
+}
+
+.google-btn:hover {
+    opacity: 0.8;
 }
