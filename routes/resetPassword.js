@@ -1,6 +1,7 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const User = require("../models/user");
+const bcrypt = require('bcrypt');
 
 const requireAuth = (req, res, next) => {
     if (req.session.user) {
@@ -19,35 +20,41 @@ router.get('/', requireAuth, async function(req, res, next) {
 
 router.post('/', async function (req, res, next) {
     const { currentPass, newPass, confirmPass } = req.body;
-    const user = req.session.user
+    const sessionUser = req.session.user;
+
+    if (!sessionUser) {
+        return res.redirect('/login');
+    }
 
     if (newPass !== confirmPass) {
-        return res.render('resetPassword', { user, error: 'New passwords do not match' });
+        return res.render('resetPassword', { user: sessionUser, error: 'New passwords do not match' });
     }
 
     if (newPass.length < 8) {
-        return res.render('resetPassword', { user, error: 'New password must be at least 8 characters long' });
+        return res.render('resetPassword', { user: sessionUser, error: 'New password must be at least 8 characters long' });
     }
 
     try {
-        const User = await User.findById(req.session.user._id);
-        const user = req.session.user
-
-        const isMatch = bcrypt.compareSync(currentPass, User.password);
-        if (!isMatch) {
-            return res.render('resetPassword', { user, error: 'Current password is incorrect' });
+        const dbUser = await User.findById(sessionUser._id);
+        if (!dbUser) {
+            return res.render('resetPassword', { user: sessionUser, error: 'User not found' });
         }
 
-        const salt = bcrypt.genSaltSync(10);
-        const hashedNewPassword = bcrypt.hashSync(newPass, salt);
+        const isMatch = await bcrypt.compare(currentPass, dbUser.password);
+        if (!isMatch) {
+            return res.render('resetPassword', { user: sessionUser, error: 'Current password is incorrect' });
+        }
 
-        User.password = hashedNewPassword;
-        await User.save();
+        const salt = await bcrypt.genSalt(10);
+        const hashedNewPassword = await bcrypt.hash(newPass, salt);
+
+        dbUser.password = hashedNewPassword;
+        await dbUser.save();
 
         res.redirect('/profile');
     } catch (err) {
-        console.log(err);
-        res.render('resetPassword', { error: 'Something went wrong. Please try again.' });
+        console.error(err);
+        res.render('resetPassword', { user: sessionUser, error: 'Something went wrong. Please try again.' });
     }
 });
 
