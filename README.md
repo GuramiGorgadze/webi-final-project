@@ -77,11 +77,11 @@ Run the project with "dev":
 
 ### .env for testing 
 
-'''sh
+```sh
 PORT=3000
 DB_CONNECTION_STRING=mongodb+srv://test:test@blog.xodzihd.mongodb.net/?retryWrites=true&w=majority&appName=Blog
 SESSION_SECRET=your-secret-key
-'''
+```
 
 ---
 
