@@ -74,7 +74,7 @@ Run the project with "dev":
 > package.json
 ```
 
-### .env for testing 
+### .ENV
 
 ```sh
 PORT=3000
