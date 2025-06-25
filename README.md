@@ -35,7 +35,7 @@
     - [Prerequisites](#prerequisites)
     - [Installation](#installation)
     - [Usage](#usage)
-    - [.env For Testing](#.ENV)
+    - [.env](#.env)
 
 ---
 
@@ -74,7 +74,7 @@ Run the project with "dev":
 > package.json
 ```
 
-### .ENV
+### .env
 
 ```sh
 PORT=3000
