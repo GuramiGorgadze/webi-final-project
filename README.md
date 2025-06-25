@@ -35,6 +35,7 @@
     - [Prerequisites](#prerequisites)
     - [Installation](#installation)
     - [Usage](#usage)
+    - [.env](#.env)
 
 ---
 
@@ -72,6 +73,15 @@ Run the project with "dev":
 ```sh
 > package.json
 ```
+
+### .env
+
+```sh
+PORT=3000
+DB_CONNECTION_STRING=mongodb+srv://test:test@blog.xodzihd.mongodb.net/?retryWrites=true&w=majority&appName=Blog
+SESSION_SECRET=your-secret-key
+```
+User Credentials For Testing: user123@gmail.com, 123123123 or test123@gmail.com, 123123123
 
 ---
 
