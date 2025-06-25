@@ -73,8 +73,6 @@ Run the project with "dev":
 > package.json
 ```
 
----
-
 ### .env for testing 
 
 ```sh
