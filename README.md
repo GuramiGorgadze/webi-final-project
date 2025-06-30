@@ -60,19 +60,19 @@ Build webi-final-project from the source and install dependencies:
 
 2. **Install the dependencies:**
 
-**Using [npm](https://www.npmjs.com/):**
+    **Using [npm](https://www.npmjs.com/):**
 
-```sh
-❯ npm install
-```
+    ```sh
+    ❯ npm install
+    ```
 
 ### Usage
-
-Run the project with "dev":
-
-```sh
-> package.json
-```
+    
+    Run the project with "dev":
+    
+    ```sh
+    > package.json
+    ```
 
 ### .env
 
