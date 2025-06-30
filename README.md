@@ -76,13 +76,13 @@ Build webi-final-project from the source and install dependencies:
 
 ### .env
 
-```sh
-PORT=3000
-DB_CONNECTION_STRING=mongodb+srv://test:test@blog.xodzihd.mongodb.net/?retryWrites=true&w=majority&appName=Blog
-SESSION_SECRET=your-secret-key
-CLIENT_ID=496932226201-idghe4tulikfj7i2e1h9hi3rvojc5stg.apps.googleusercontent.com
-CLIENT_SECRET=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
-```
+    ```sh
+    PORT=3000
+    DB_CONNECTION_STRING=mongodb+srv://test:test@blog.xodzihd.mongodb.net/?retryWrites=true&w=majority&appName=Blog
+    SESSION_SECRET=your-secret-key
+    CLIENT_ID=496932226201-idghe4tulikfj7i2e1h9hi3rvojc5stg.apps.googleusercontent.com
+    CLIENT_SECRET=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
+    ```
 User Credentials For Testing: user123@gmail.com, 123123123 or test123@gmail.com, 123123123
 
 ---
