@@ -68,7 +68,7 @@ Build webi-final-project from the source and install dependencies:
 
 ### Usage
     
-    Run the project with "dev":
+Run the project with "dev":
     
 ```sh
 > package.json
